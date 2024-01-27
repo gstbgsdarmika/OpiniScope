@@ -1,8 +1,8 @@
 {% extends 'navigation.html' %} {% block title %}
 <title>Analisis File</title>
 {% endblock %} {% block content %}
-<div class="container w-11/12 mx-auto">
-  <div class="grid items-center justify-center grid-cols-2 h-svh gap-x-10">
+<div class="container w-11/12 mx-auto mt-10">
+  <div class="grid items-center justify-center grid-cols-2 h-svh gap-x-20">
     <div class="col-span-1">
       <div class="object-cover">
         <img
@@ -24,7 +24,7 @@
           <span class="text-base font-semibold text-[#5842BE]"> 'label' </span>
           untuk memastikan analisis berjalan dengan lancar.
         </p>
-        <div class="flex gap-x-4">
+        <div class="w-11/12">
           <form
             id="analysisForm"
             class="flex items-center justify-center gap-x-5"
@@ -46,6 +46,7 @@
             >
               Submit
             </button>
+            <label for="large-file-input" class="sr-only">Choose file</label>
           </form>
         </div>
       </div>
