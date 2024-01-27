@@ -135,6 +135,7 @@
                   <div class="py-2 mt-2 first:pt-0 last:pb-0">
                     <a
                       class="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-[#5842BE] focus:ring-2 focus:ring-blue-50 hover:text-white"
+                      href="{{ url_for('logout') }}"
                     >
                       <svg
                         class="flex-shrink-0 w-4 h-4"
@@ -170,10 +171,10 @@
 
       // Jika posisi scroll lebih besar dari 0, tambahkan kelas shadow
       if (window.scrollY > 0) {
-        navbar.classList.add("shadow-lg");
+        navbar.classList.add("shadow-md");
       } else {
         // Jika tidak, hapus kelas shadow
-        navbar.classList.remove("shadow-lg");
+        navbar.classList.remove("shadow-md");
       }
     });
   </script>
