@@ -1,0 +1,298 @@
+{% extends 'navigation.html' %} {% block title %}
+<title>Hasil Analisis</title>
+{% endblock %} {% block content %}
+<div class="container w-11/12 py-10 mx-auto mt-20">
+  <div class="flex flex-col items-center justify-center">
+    <h1 class="text-[#40444E] text-4xl font-bold mb-10">
+      Hasil Analisis Sentimen
+    </h1>
+    <div class="grid grid-cols-2 gap-5">
+      <div class="col-span-1 p-5 mt-5 bg-white rounded-md shadow">
+        <div
+          id="hs-pie-chart-classification"
+          class="flex items-center justify-center"
+        ></div>
+        <div class="flex items-center justify-center mt-1 gap-x-4 sm:mt-6">
+          <div class="inline-flex items-center">
+            <span
+              class="w-8 h-3 inline-block bg-[#5842BE] rounded-sm me-2"
+            ></span>
+            <span class="text-[13px] text-[#40444E]"> Positif </span>
+          </div>
+          <div class="inline-flex items-center">
+            <span
+              class="w-8 h-3 inline-block bg-[#8F77FF] rounded-sm me-2"
+            ></span>
+            <span class="text-[13px] text-[#40444E]"> Negatif </span>
+          </div>
+        </div>
+        <h1 class="text-[#40444E] mt-5 font-semibold text-md">
+          Hasil Total Data Klasifikasi Sentimen
+        </h1>
+        <div class="mt-5">
+          <p class="text-sm font-medium text-[#40444E] mb-2">
+            Positif : <span>543</span> Data
+          </p>
+          <div
+            class="flex w-full h-4 overflow-hidden bg-gray-300 rounded-full"
+            role="progressbar"
+            aria-valuenow="25"
+            aria-valuemin="0"
+            aria-valuemax="100"
+          >
+            <div
+              class="flex flex-col justify-center overflow-hidden bg-[#5842BE] text-xs text-white text-center whitespace-nowrap transition duration-500"
+              style="width: 65%"
+            ></div>
+          </div>
+        </div>
+        <div class="mt-5">
+          <p class="text-sm font-medium text-[#40444E] mb-2">
+            Negatif : <span>275</span> Data
+          </p>
+          <div
+            class="flex w-full h-4 overflow-hidden bg-gray-300 rounded-full"
+            role="progressbar"
+            aria-valuenow="25"
+            aria-valuemin="0"
+            aria-valuemax="100"
+          >
+            <div
+              class="flex flex-col justify-center overflow-hidden bg-[#8F77FF] text-xs text-white text-center whitespace-nowrap transition duration-500"
+              style="width: 35%"
+            ></div>
+          </div>
+        </div>
+      </div>
+      <div class="col-span-1 p-5 mt-5 bg-white rounded-md shadow">
+        <div
+          id="hs-pie-chart-model"
+          class="flex items-center justify-center"
+        ></div>
+        <div class="flex items-center justify-center mt-1 gap-x-4 sm:mt-6">
+          <div class="inline-flex items-center">
+            <span
+              class="w-8 h-3 inline-block bg-[#5842BE] rounded-sm me-2"
+            ></span>
+            <span class="text-[13px] text-[#40444E]"> Sesuai </span>
+          </div>
+          <div class="inline-flex items-center">
+            <span
+              class="w-8 h-3 inline-block bg-[#8F77FF] rounded-sm me-2"
+            ></span>
+            <span class="text-[13px] text-[#40444E]"> Tidak Sesuai </span>
+          </div>
+        </div>
+        <div class="flex justify-between">
+          <h1 class="text-[#40444E] mt-5 font-semibold text-md">
+            Tabel Confusion Matrix
+          </h1>
+          <h1 class="text-[#5842BE] mt-5 font-semibold text-md">
+            Akurasi Model :
+            <span>90</span>
+            %
+          </h1>
+        </div>
+        <div class="rounded-lg">
+          <table class="w-full mt-2 rounded-full">
+            <thead class="bg-[#5842BE]">
+              <tr>
+                <th
+                  scope="col"
+                  class="px-2 py-2 text-sm font-medium text-white border text-start"
+                ></th>
+                <th
+                  scope="col"
+                  class="px-6 py-2 text-sm font-medium text-white border text-start"
+                >
+                  Klasifikasi Positif
+                </th>
+                <th
+                  scope="col"
+                  class="px-6 py-2 text-sm font-medium text-white border text-start"
+                >
+                  Klasifikasi Negatif
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="border px-6 py-2 text-sm font-medium text-[#40444E]">
+                  Aktual Positif
+                </td>
+                <td class="border px-6 py-2 text-sm font-medium text-[#40444E]">
+                  60
+                </td>
+                <td class="border px-6 py-2 text-sm font-medium text-[#40444E]">
+                  80
+                </td>
+              </tr>
+              <tr>
+                <td
+                  class="border px-6 py-2 text-sm font-medium text-[#40444E] whitespace-nowrap"
+                >
+                  Aktual Negatif
+                </td>
+                <td
+                  class="border px-6 py-2 text-sm font-medium text-[#40444E] whitespace-nowrap"
+                >
+                  20
+                </td>
+                <td
+                  class="border px-6 py-2 text-sm font-medium text-[#40444E] whitespace-nowrap"
+                >
+                  32
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <a
+      href="{{ url_for('analysis') }}"
+      class="px-4 mt-10 py-3 border border-[#5842BE] font-semibold text-center text-[#5842BE] rounded-lg"
+    >
+      Coba Lagi
+    </a>
+  </div>
+</div>
+<script>
+  window.addEventListener("load", () => {
+    (function () {
+      buildChart(
+        "#hs-pie-chart-classification",
+        () => ({
+          chart: {
+            width: "60%",
+            type: "pie",
+            zoom: {
+              enabled: false,
+            },
+          },
+          series: [73, 27],
+          labels: ["Positif", "Negatif"],
+          title: {
+            show: false,
+          },
+          dataLabels: {
+            style: {
+              fontSize: "14px",
+              fontFamily: "Poppins, ui-sans-serif",
+              fontWeight: "400",
+              colors: ["#fff", "#fff"],
+            },
+            dropShadow: {
+              enabled: false,
+            },
+            formatter: (value) => `${value.toFixed(0)} %`,
+          },
+          plotOptions: {
+            pie: {
+              dataLabels: {
+                offset: -20,
+              },
+            },
+          },
+          legend: {
+            show: false,
+          },
+          stroke: {
+            width: 2,
+          },
+          tooltip: {
+            enabled: true,
+          },
+          states: {
+            hover: {
+              filter: {
+                type: "none",
+              },
+            },
+          },
+        }),
+        {
+          colors: ["#5842BE", "#8F77FF"],
+          stroke: {
+            colors: ["rgb(255, 255, 255)"],
+          },
+        },
+        {
+          colors: ["#8F77FF", "#5842BE"],
+          stroke: {
+            colors: ["rgb(38, 38, 38)"],
+          },
+        }
+      );
+    })();
+  });
+  window.addEventListener("load", () => {
+    (function () {
+      buildChart(
+        "#hs-pie-chart-model",
+        () => ({
+          chart: {
+            width: "60%",
+            type: "pie",
+            zoom: {
+              enabled: false,
+            },
+          },
+          series: [90, 10],
+          labels: ["Sesuai", "Tidak Sesuai"],
+          title: {
+            show: false,
+          },
+          dataLabels: {
+            style: {
+              fontSize: "14px",
+              fontFamily: "Poppins, ui-sans-serif",
+              fontWeight: "400",
+              colors: ["#fff", "#fff"],
+            },
+            dropShadow: {
+              enabled: false,
+            },
+            formatter: (value) => `${value.toFixed(0)} %`,
+          },
+          plotOptions: {
+            pie: {
+              dataLabels: {
+                offset: -20,
+              },
+            },
+          },
+          legend: {
+            show: false,
+          },
+          stroke: {
+            width: 2,
+          },
+          tooltip: {
+            enabled: true,
+          },
+          states: {
+            hover: {
+              filter: {
+                type: "none",
+              },
+            },
+          },
+        }),
+        {
+          colors: ["#5842BE", "#8F77FF"],
+          stroke: {
+            colors: ["rgb(255, 255, 255)"],
+          },
+        },
+        {
+          colors: ["#8F77FF", "#5842BE"],
+          stroke: {
+            colors: ["rgb(38, 38, 38)"],
+          },
+        }
+      );
+    })();
+  });
+</script>
+{% endblock %}

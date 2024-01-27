@@ -1,0 +1,16 @@
+# .gitignore
+node_modules
+/env/
+/venv/
+/.venv/
+
+# Python
+__pycache__/
+
+# Other entries...
+
+# config.py file
+config.py
+example.csv
+test.ipynb
+```

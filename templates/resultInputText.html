@@ -1,0 +1,37 @@
+{% extends 'navigation.html' %} {% block title %}
+<title>Hasil Analisis</title>
+{% endblock %} {% block content %}
+<div class="container w-11/12 mx-auto mt-10">
+  <div class="flex flex-col items-center justify-center h-screen text-center">
+    <h1 class="text-[#40444E] text-4xl font-bold mb-10">
+      Hasil Analisis Sentimen
+    </h1>
+    <p class="w-3/5 mb-8 text-base font-semibold text-justify text-stone-700">
+      Tweet :
+      <span class="font-normal text-stone-700"
+        >Wah, denger-denger nih duo Pak Prabowo sama Pak Erick mau jadi
+        capres-cawapres. Semoga bisa bikin Indo makin hebat! #AllInPrabowo
+        #dekade08 #mendingprabowo #terusmajubersamaprabowo #pemilu2024
+      </span>
+    </p>
+    <p class="w-3/5 text-base font-semibold text-justify text-stone-700">
+      Preprocessing :
+      <span class="font-normal text-stone-700"
+        >dengar bapak prabowo sama bapak erick mau jadi caprescawapres moga
+        bikin indonesia makin hebat</span
+      >
+    </p>
+    <h1
+      class="md:p-2.5 p-1.5 mt-8 capitalize bg-[#5842BE] rounded-lg text-white md:text-4xl text-2xl font-extrabold inline-block"
+    >
+      Sentimen : Positif
+    </h1>
+    <a
+      href="{{ url_for('analysis') }}"
+      class="px-4 mt-10 py-3 border border-[#5842BE] font-semibold text-center text-[#5842BE] rounded-lg"
+    >
+      Coba Lagi
+    </a>
+  </div>
+</div>
+{% endblock %}

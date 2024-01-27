@@ -1,0 +1,55 @@
+{% extends 'navigation.html' %} {% block title %}
+<title>Analisis File</title>
+{% endblock %} {% block content %}
+<div class="container w-11/12 mx-auto">
+  <div class="grid items-center justify-center grid-cols-2 h-svh gap-x-10">
+    <div class="col-span-1">
+      <div class="object-cover">
+        <img
+          src="{{ url_for('static', filename='images/mobile.png') }}"
+          alt="Login Image"
+          class="object-cover"
+        />
+      </div>
+    </div>
+    <div class="col-span-1">
+      <div class="">
+        <h1 class="text-[#40444E] text-4xl font-bold mb-4">
+          Pilih Masukan Data
+        </h1>
+        <p class="mb-10 text-base text-justify text-stone-700">
+          Pastikan file .csv Anda dilengkapi dengan kolom
+          <span class="text-base font-semibold text-[#5842BE]"> 'tweet' </span>
+          dan
+          <span class="text-base font-semibold text-[#5842BE]"> 'label' </span>
+          untuk memastikan analisis berjalan dengan lancar.
+        </p>
+        <div class="flex gap-x-4">
+          <form
+            id="analysisForm"
+            class="flex items-center justify-center gap-x-5"
+            action="/analysis-input-file"
+            method="post"
+            enctype="multipart/form-data"
+          >
+            <input
+              class="block w-full text-sm border border-gray-300 rounded-lg shadow-sm focus:z-10 focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none file:bg-gray-100 file:border-0 file:me-4 file:py-3 file:px-4"
+              type="file"
+              name="file-input"
+              id="file-input"
+              accept=".csv"
+            />
+            <button
+              type="submit"
+              id="submitBtn"
+              class="text-center bg-[#5842BE] text-white py-3 px-4 font-semibold rounded-lg"
+            >
+              Submit
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
