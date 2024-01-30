@@ -14,6 +14,7 @@
       href="{{ url_for('static',filename='dist/css/output.css') }}"
     />
     <link rel="stylesheet" href="{{ url_for('serve_apexcharts_css') }}" />
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   </head>
   <body>
     <header
@@ -129,13 +130,13 @@
                   <div class="py-3 px-5 -m-2 bg-[#5842BE] rounded-t-lg">
                     <p class="text-sm text-white">Masuk sebagai</p>
                     <p class="text-sm font-medium text-white">
-                      BgsDarmika@gmail.com
+                      {{ current_user.email }}
                     </p>
                   </div>
                   <div class="py-2 mt-2 first:pt-0 last:pb-0">
                     <a
+                      id="logout-btn"
                       class="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-[#5842BE] focus:ring-2 focus:ring-blue-50 hover:text-white"
-                      href="{{ url_for('logout') }}"
                     >
                       <svg
                         class="flex-shrink-0 w-4 h-4"
@@ -163,12 +164,11 @@
         </div>
       </nav>
     </header>
-    <main class="">{% block content %} {% endblock %}</main>
+    <main>{% block content %} {% endblock %}</main>
   </body>
   <script>
     window.addEventListener("scroll", function () {
       var navbar = document.getElementById("navbar");
-
       // Jika posisi scroll lebih besar dari 0, tambahkan kelas shadow
       if (window.scrollY > 0) {
         navbar.classList.add("shadow-md");
@@ -176,6 +176,27 @@
         // Jika tidak, hapus kelas shadow
         navbar.classList.remove("shadow-md");
       }
+    });
+  </script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      document
+        .getElementById("logout-btn")
+        .addEventListener("click", function () {
+          Swal.fire({
+            text: "Apakah Anda yakin ingin logout?",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Ya, logout!",
+            cancelButtonText: "Batal",
+          }).then((result) => {
+            if (result.isConfirmed) {
+              window.location.href = "{{ url_for('logout') }}";
+            }
+          });
+        });
     });
   </script>
   <script src="{{ url_for('serve_preline_js') }}"></script>

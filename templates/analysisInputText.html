@@ -18,15 +18,15 @@
         <div class="flex gap-x-4">
           <form class="w-full" method="post">
             <textarea
-              id="document"
-              name="document"
+              id="text-input"
+              name="text-input"
               class="block w-full px-4 py-3 text-sm border border-gray-400 rounded-lg focus:border-[#5842BE] focus:ring-[#5842BE] disabled:opacity-50 disabled:pointer-events-none"
               rows="6"
               placeholder="Ketik teks yang ingin dianalisis"
             ></textarea>
             <button
               type="submit"
-              class="text-center bg-[#5842BE] text-white py-3 px-4 font-semibold rounded-lg mt-6"
+              class="text-center bg-[#5842BE] text-white py-3 px-4 font-semibold rounded-lg mt-6 hover:bg-[#583cd6]"
             >
               Analisis
             </button>
@@ -36,4 +36,12 @@
     </div>
   </div>
 </div>
-{% endblock %}
+{% if error_message %}
+<script>
+  Swal.fire({
+    icon: "error",
+    title: "Oops...",
+    text: "{{ error_message }}",
+  });
+</script>
+{% endif %} {% endblock %}
