@@ -211,9 +211,9 @@
               total_data }} data
             </p>
             <div class="flex gap-3">
-              <button
+              <a
                 id="download-btn"
-                type="submit"
+                href="{{ url_for('download_csv') }}"
                 class="px-4 bg-[#5842BE] inline-flex items-center gap-x-2 hover:bg-[#4427c5] text-white py-2.5 rounded-lg"
               >
                 <svg
@@ -232,7 +232,7 @@
                   />
                 </svg>
                 Unduh data
-              </button>
+              </a>
             </div>
           </nav>
         </div>

@@ -1,3 +1,5 @@
+import os
+import csv
 import pickle
 import numpy as np
 import pandas as pd
@@ -8,7 +10,7 @@ from sklearn.metrics import accuracy_score
 from service.userService import UserService
 from sklearn.metrics import confusion_matrix
 from models.machine.preprocessing.preprocessing import TextPreprocessor
-from flask import Flask, request, jsonify, render_template, flash, redirect, session, url_for, send_from_directory
+from flask import Flask, request, jsonify, render_template, flash, send_file, redirect, session, url_for, send_from_directory
 from flask_login import LoginManager, login_user, current_user, logout_user, login_required
 
 app = Flask(__name__, static_url_path='/static')
@@ -98,11 +100,11 @@ def analysisInputFile():
     
     if request.method == 'POST':
         if 'file-input' not in request.files:
-            return render_template('analysisInputFile.html', error='File tidak ditemukan')
+            return render_template('analysisInputFile.html', active_page=active_page, error='File tidak ditemukan')
         
         file = request.files['file-input']
         if file.filename == '':
-            return render_template('analysisInputFile.html', error='File tidak valid')
+            return render_template('analysisInputFile.html', active_page=active_page, error='File tidak ditemukan')
         
         try:
             # Memanggil model yang digunakan
@@ -121,7 +123,7 @@ def analysisInputFile():
 
             # Periksa keberadaan kolom 'tweet' dan 'label'
             if 'tweet' not in df.columns or 'label' not in df.columns:
-                return render_template('analysisInputFile.html', error='Kolom tweet atau label tidak ditemukan dalam file CSV')
+                return render_template('analysisInputFile.html', active_page=active_page, error='Kolom tweet atau label tidak ditemukan dalam file CSV')
 
             # Mengambil hanya kolom 'label' dan 'tweet'
             df = df[['label', 'tweet']]
@@ -179,20 +181,39 @@ def analysisInputFile():
             end_index = min(start_index + per_page, total_data)
             sliced_df = df.iloc[start_index:end_index]
             
-            return render_template('resultInputFile.html', 
-                    active_page=active_page, df=df,
-                    accuracy=accuracy_display, conf_matrix=conf_matrix, 
+            # Path untuk menyimpan file CSV sementara
+            temporary_csv_path = 'models/hasil analisis.csv'
+            
+            # Membuat file CSV
+            csv_columns = ['Komentar', 'Klasifikasi Manual', 'Klasifikasi Sistem']
+            with open(temporary_csv_path, 'w', newline='', encoding='utf-8') as csvfile:
+                writer = csv.DictWriter(csvfile, fieldnames=csv_columns)
+                writer.writeheader()
+                for index, row in df.iterrows():
+                    writer.writerow({'Komentar': row['tweet_clean'], 
+                            'Klasifikasi Manual': 'positif' if row['label'] == 1 else 'negatif',
+                            'Klasifikasi Sistem': 'positif' if row['prediction'] == 1 else 'negatif'})
+        
+            return render_template('resultInputFile.html', active_page=active_page, 
+                    df=df, accuracy=accuracy_display, conf_matrix=conf_matrix, 
                     positive_data=positive_data, negative_data=negative_data,
                     percentage_correct=percentage_correct, percentage_incorrect=percentage_incorrect,
                     positive_percentage=positive_percentage, negative_percentage=negative_percentage,
                     pages=pages, page=page, start_index=start_index, end_index=end_index, total_data=total_data)
 
         except pd.errors.EmptyDataError:
-            return render_template('analysisInputFile.html', error='Data tidak ditemukan')
+            return render_template('analysisInputFile.html',active_page=active_page, error='Data tidak ditemukan')
         except pd.errors.ParserError:
-            return render_template('analysisInputFile.html', error='Data tidak ditemukan')
-
+            return render_template('analysisInputFile.html', active_page=active_page, error='Data tidak ditemukan')
+        except IOError as e:
+            print("I/O error:", e)
+            return render_template('analysisInputFile.html', active_page=active_page, error='Gagal menyimpan file CSV')
     return render_template("analysisInputFile.html", active_page=active_page)
+
+@app.route('/download-csv')
+def download_csv():
+    filename = 'models/hasil analisis.csv'
+    return send_file(filename, as_attachment=True)
 
 # Route untuk halaman analisis teks
 @app.route("/analisis-teks", methods=['GET', 'POST'])
@@ -200,6 +221,11 @@ def analysisInputText():
     active_page = 'analysis'
     if request.method == 'POST':
         text = request.form.get('text-input')
+        
+        # Periksa apakah teks tidak kosong
+        if not text:
+            error_message = "Tidak boleh kosong. Silakan masukkan teks!"
+            return render_template("analysisInputText.html", active_page=active_page, error_message=error_message)
 
         # Memanggil model yang digunakan
         def load_model(file_path):

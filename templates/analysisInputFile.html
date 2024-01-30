@@ -52,4 +52,12 @@
     </div>
   </div>
 </div>
-{% endblock %}
+{% if error %}
+<script>
+  Swal.fire({
+    icon: "error",
+    title: "Oops...",
+    text: "{{ error }}",
+  });
+</script>
+{% endif %} {% endblock %}
