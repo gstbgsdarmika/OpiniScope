@@ -26,27 +26,26 @@
         </p>
         <div class="w-11/12">
           <form
-            id="analysisForm"
+            id="analysis-form"
             class="flex items-center justify-center gap-x-5"
-            action="/analysis-input-file"
-            method="post"
+            action="/analisis-file"
+            method="POST"
             enctype="multipart/form-data"
           >
             <input
-              class="block w-full text-sm border border-gray-300 rounded-lg shadow-sm focus:z-10 focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none file:bg-gray-100 file:border-0 file:me-4 file:py-3 file:px-4"
-              type="file"
-              name="file-input"
+              class="block w-full text-sm border border-gray-300 rounded-lg shadow-sm focus:z-10 focus:border-[#5842BE] focus:ring-[#5842BE] disabled:opacity-50 disabled:pointer-events-none file:bg-gray-100 file:border-0 file:me-4 file:py-3 file:px-4"
               id="file-input"
+              name="file-input"
+              type="file"
               accept=".csv"
             />
             <button
-              type="submit"
-              id="submitBtn"
+              type="sumbit"
+              id="submitFile"
               class="text-center bg-[#5842BE] text-white py-3 px-4 font-semibold rounded-lg"
             >
               Submit
             </button>
-            <label for="large-file-input" class="sr-only">Choose file</label>
           </form>
         </div>
       </div>

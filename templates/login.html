@@ -13,10 +13,6 @@
       rel="stylesheet"
       href="{{ url_for('static',filename='dist/css/output.css') }}"
     />
-    <link
-      rel="stylesheet"
-      href="{{ url_for('static',filename='css/style.css') }}"
-    />
   </head>
 
   <body>
@@ -30,7 +26,7 @@
             >Daftar</a
           >
         </p>
-        <form action="#" method="POST" class="">
+        <form action="{{ url_for('login') }}" method="POST" class="">
           <div class="my-4">
             <input
               type="email"
@@ -73,4 +69,27 @@
       </div>
     </div>
   </body>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  {% if error %}
+  <script>
+    Swal.fire({
+      icon: "error",
+      title: "Oops...",
+      text: "{{ error }}",
+    });
+  </script>
+  {% endif %}
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const urlParams = new URLSearchParams(window.location.search);
+      const message = urlParams.get("message");
+      if (message) {
+        Swal.fire({
+          icon: "success",
+          title: "Success",
+          text: message,
+        });
+      }
+    });
+  </script>
 </html>
