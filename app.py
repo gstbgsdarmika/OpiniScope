@@ -210,11 +210,6 @@ def analysisInputFile():
             return render_template('analysisInputFile.html', active_page=active_page, error='Gagal menyimpan file CSV')
     return render_template("analysisInputFile.html", active_page=active_page)
 
-@app.route('/download-csv')
-def download_csv():
-    filename = 'models/hasil analisis.csv'
-    return send_file(filename, as_attachment=True)
-
 # Route untuk halaman analisis teks
 @app.route("/analisis-teks", methods=['GET', 'POST'])
 def analysisInputText():
@@ -268,6 +263,12 @@ def resultInputFile():
 def resultInputText():
     active_page = 'analysis'
     return render_template("resultInputText.html", active_page=active_page)
+
+# Route untuk mendownload file hasil analisis
+@app.route('/download-csv')
+def download_csv():
+    filename = 'models/hasil analisis.csv'
+    return send_file(filename, as_attachment=True)
 
 # Route untuk halaman 404
 @app.errorhandler(404)

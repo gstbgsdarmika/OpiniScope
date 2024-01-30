@@ -42,7 +42,7 @@
             <button
               type="sumbit"
               id="submitFile"
-              class="text-center bg-[#5842BE] text-white py-3 px-4 font-semibold rounded-lg"
+              class="text-center bg-[#5842BE] text-white py-3 px-4 font-semibold rounded-lg hover:bg-[#583cd6]"
             >
               Submit
             </button>
@@ -60,4 +60,18 @@
     text: "{{ error }}",
   });
 </script>
-{% endif %} {% endblock %}
+{% endif %}
+<script>
+  document.getElementById("submitFile").addEventListener("click", function () {
+    Swal.fire({
+      title: "Sedang memproses file...",
+      showLoaderOnConfirm: true,
+      allowOutsideClick: false,
+      showConfirmButton: false,
+      didOpen: () => {
+        Swal.showLoading();
+      },
+    });
+  });
+</script>
+{% endblock %}
