@@ -182,7 +182,7 @@ def analysisInputFile():
             sliced_df = df.iloc[start_index:end_index]
             
             # Path untuk menyimpan file CSV sementara
-            temporary_csv_path = 'models/hasil analisis.csv'
+            temporary_csv_path = 'database/analysis-results/hasil analisis.csv'
             
             # Membuat file CSV
             csv_columns = ['Komentar', 'Klasifikasi Manual', 'Klasifikasi Sistem']
@@ -267,7 +267,7 @@ def resultInputText():
 # Route untuk mendownload file hasil analisis
 @app.route('/download-csv')
 def download_csv():
-    filename = 'models/hasil analisis.csv'
+    filename = 'database/analysis-results/hasil analisis.csv'
     return send_file(filename, as_attachment=True)
 
 # Route untuk halaman 404
