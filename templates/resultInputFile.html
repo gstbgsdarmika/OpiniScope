@@ -15,13 +15,13 @@
         <div class="flex items-center justify-center mt-1 gap-x-4 sm:mt-6">
           <div class="inline-flex items-center">
             <span
-              class="w-8 h-3 inline-block bg-[#5842BE] rounded-sm me-2"
+              class="w-8 h-3 inline-block bg-[#0FAA68] rounded-sm me-2"
             ></span>
             <span class="text-[13px] text-[#40444E]"> Positif </span>
           </div>
           <div class="inline-flex items-center">
             <span
-              class="w-8 h-3 inline-block bg-[#8F77FF] rounded-sm me-2"
+              class="w-8 h-3 inline-block bg-[#FD4D4D] rounded-sm me-2"
             ></span>
             <span class="text-[13px] text-[#40444E]"> Negatif </span>
           </div>
@@ -41,7 +41,7 @@
             aria-valuemax="100"
           >
             <div
-              class="flex flex-col justify-center overflow-hidden bg-[#5842BE] text-xs text-white text-center transition duration-500"
+              class="flex flex-col justify-center overflow-hidden bg-[#0FAA68] text-xs text-white text-center transition duration-500"
               style="width: {{ '%.1f' % positive_percentage }}%"
             ></div>
           </div>
@@ -58,7 +58,7 @@
             aria-valuemax="100"
           >
             <div
-              class="flex flex-col justify-center overflow-hidden bg-[#8F77FF] text-xs text-white text-center transition duration-500"
+              class="flex flex-col justify-center overflow-hidden bg-[#FD4D4D] text-xs text-white text-center transition duration-500"
               style="width: {{ '%.1f' % negative_percentage }}%"
             ></div>
           </div>
@@ -72,13 +72,13 @@
         <div class="flex items-center justify-center mt-1 gap-x-4 sm:mt-6">
           <div class="inline-flex items-center">
             <span
-              class="w-8 h-3 inline-block bg-[#5842BE] rounded-sm me-2"
+              class="w-8 h-3 inline-block bg-[#0FAA68] rounded-sm me-2"
             ></span>
             <span class="text-[13px] text-[#40444E]"> Sesuai </span>
           </div>
           <div class="inline-flex items-center">
             <span
-              class="w-8 h-3 inline-block bg-[#8F77FF] rounded-sm me-2"
+              class="w-8 h-3 inline-block bg-[#FD4D4D] rounded-sm me-2"
             ></span>
             <span class="text-[13px] text-[#40444E]"> Tidak Sesuai </span>
           </div>
@@ -95,7 +95,7 @@
         </div>
         <div class="rounded-lg">
           <table class="w-full mt-2 rounded-full">
-            <thead class="bg-[#5842BE] text-white">
+            <thead class="text-[#40444E] bg-gray-100">
               <tr>
                 <th
                   scope="col"
@@ -148,7 +148,7 @@
       <div class="border divide-y divide-gray-200 rounded-lg">
         <div class="overflow-hidden">
           <table class="min-w-full divide-y divide-gray-200">
-            <thead class="text-white bg-[#5842BE]">
+            <thead class="text-[#40444E] bg-gray-100">
               <tr>
                 <th scope="col" class="p-2 text-base font-semibold text-center">
                   No
@@ -298,13 +298,13 @@
           },
         }),
         {
-          colors: ["#5842BE", "#8F77FF"],
+          colors: ["#0FAA68", "#FD4D4D"],
           stroke: {
             colors: ["rgb(255, 255, 255)"],
           },
         },
         {
-          colors: ["#8F77FF", "#5842BE"],
+          colors: ["#FD4D4D", "#0FAA68"],
           stroke: {
             colors: ["rgb(38, 38, 38)"],
           },
@@ -366,13 +366,13 @@
           },
         }),
         {
-          colors: ["#5842BE", "#8F77FF"],
+          colors: ["#0FAA68", "#FD4D4D"],
           stroke: {
             colors: ["rgb(255, 255, 255)"],
           },
         },
         {
-          colors: ["#8F77FF", "#5842BE"],
+          colors: ["#FD4D4D", "#0FAA68"],
           stroke: {
             colors: ["rgb(38, 38, 38)"],
           },
