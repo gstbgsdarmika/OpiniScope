@@ -97,69 +97,6 @@
               href="{{ url_for('analysis') }}"
               >Analisis</a
             >
-            <div class="flex flex-row items-center justify-end gap-x-5">
-              <div
-                class="hs-dropdown relative inline-flex [--placement:bottom-right]"
-              >
-                <button
-                  id="hs-dropdown-with-header"
-                  type="button"
-                  class="inline-flex items-center justify-center text-[#5842BE]"
-                >
-                  <svg
-                    width="20"
-                    height="20"
-                    viewBox="0 0 20 20"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                    class="inline-block w-8 h-8 rounded-full"
-                  >
-                    <path
-                      fill-rule="evenodd"
-                      clip-rule="evenodd"
-                      d="M18 10C18 12.1217 17.1571 14.1566 15.6569 15.6569C14.1566 17.1571 12.1217 18 10 18C7.87827 18 5.84344 17.1571 4.34315 15.6569C2.84285 14.1566 2 12.1217 2 10C2 7.87827 2.84285 5.84344 4.34315 4.34315C5.84344 2.84285 7.87827 2 10 2C12.1217 2 14.1566 2.84285 15.6569 4.34315C17.1571 5.84344 18 7.87827 18 10ZM12 7C12 7.53043 11.7893 8.03914 11.4142 8.41421C11.0391 8.78929 10.5304 9 10 9C9.46957 9 8.96086 8.78929 8.58579 8.41421C8.21071 8.03914 8 7.53043 8 7C8 6.46957 8.21071 5.96086 8.58579 5.58579C8.96086 5.21071 9.46957 5 10 5C10.5304 5 11.0391 5.21071 11.4142 5.58579C11.7893 5.96086 12 6.46957 12 7ZM10 11C9.0426 10.9998 8.10528 11.2745 7.29942 11.7914C6.49356 12.3083 5.85304 13.0457 5.454 13.916C6.01668 14.5706 6.71427 15.0958 7.49894 15.4555C8.28362 15.8152 9.13681 16.0009 10 16C10.8632 16.0009 11.7164 15.8152 12.5011 15.4555C13.2857 15.0958 13.9833 14.5706 14.546 13.916C14.147 13.0457 13.5064 12.3083 12.7006 11.7914C11.8947 11.2745 10.9574 10.9998 10 11Z"
-                      fill="currentColor"
-                    />
-                  </svg>
-                </button>
-
-                <div
-                  class="hs-dropdown-menu transition-[opacity,margin] duration hs-dropdown-open:opacity-100 opacity-0 hidden min-w-[15rem] bg-white shadow-md rounded-lg p-2"
-                  aria-labelledby="hs-dropdown-with-header"
-                >
-                  <div class="py-3 px-5 -m-2 bg-[#5842BE] rounded-t-lg">
-                    <p class="text-sm text-white">Masuk sebagai</p>
-                    <p class="text-sm font-medium text-white">
-                      {{ current_user.email }}
-                    </p>
-                  </div>
-                  <div class="py-2 mt-2 first:pt-0 last:pb-0">
-                    <a
-                      id="logout-btn"
-                      class="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-[#5842BE] focus:ring-2 focus:ring-blue-50 hover:text-white"
-                    >
-                      <svg
-                        class="flex-shrink-0 w-4 h-4"
-                        width="24"
-                        height="24"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          d="M17 16.5L21 12.5M21 12.5L17 8.5M21 12.5H7M13 16.5V17.5C13 18.2956 12.6839 19.0587 12.1213 19.6213C11.5587 20.1839 10.7956 20.5 10 20.5H6C5.20435 20.5 4.44129 20.1839 3.87868 19.6213C3.31607 19.0587 3 18.2956 3 17.5V7.5C3 6.70435 3.31607 5.94129 3.87868 5.37868C4.44129 4.81607 5.20435 4.5 6 4.5H10C10.7956 4.5 11.5587 4.81607 12.1213 5.37868C12.6839 5.94129 13 6.70435 13 7.5V8.5"
-                          stroke="currentColor"
-                          stroke-width="2"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                        />
-                      </svg>
-                      Keluar
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
       </nav>
@@ -176,27 +113,6 @@
         // Jika tidak, hapus kelas shadow
         navbar.classList.remove("shadow-md");
       }
-    });
-  </script>
-  <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      document
-        .getElementById("logout-btn")
-        .addEventListener("click", function () {
-          Swal.fire({
-            text: "Apakah Anda yakin ingin logout?",
-            icon: "warning",
-            showCancelButton: true,
-            confirmButtonColor: "#3085d6",
-            cancelButtonColor: "#d33",
-            confirmButtonText: "Ya, logout!",
-            cancelButtonText: "Batal",
-          }).then((result) => {
-            if (result.isConfirmed) {
-              window.location.href = "{{ url_for('logout') }}";
-            }
-          });
-        });
     });
   </script>
   <script src="{{ url_for('serve_preline_js') }}"></script>
