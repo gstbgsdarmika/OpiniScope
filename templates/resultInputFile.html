@@ -6,8 +6,8 @@
     <h1 class="text-[#40444E] text-4xl font-bold mb-10">
       Hasil Analisis Sentimen
     </h1>
-    <div class="grid w-full grid-cols-2 gap-x-10">
-      <div class="col-span-1 p-5 bg-white rounded-md shadow">
+    <div class="w-full">
+      <div class="p-5 bg-white rounded-md shadow">
         <div
           id="hs-pie-chart-classification"
           class="flex items-center justify-center"
@@ -64,84 +64,6 @@
           </div>
         </div>
       </div>
-      <div class="col-span-1 p-5 bg-white rounded-md shadow">
-        <div
-          id="hs-pie-chart-model"
-          class="flex items-center justify-center"
-        ></div>
-        <div class="flex items-center justify-center mt-1 gap-x-4 sm:mt-6">
-          <div class="inline-flex items-center">
-            <span
-              class="w-8 h-3 inline-block bg-[#0FAA68] rounded-sm me-2"
-            ></span>
-            <span class="text-[13px] text-[#40444E]"> Sesuai </span>
-          </div>
-          <div class="inline-flex items-center">
-            <span
-              class="w-8 h-3 inline-block bg-[#FD4D4D] rounded-sm me-2"
-            ></span>
-            <span class="text-[13px] text-[#40444E]"> Tidak Sesuai </span>
-          </div>
-        </div>
-        <div class="flex justify-between">
-          <h1 class="text-[#40444E] mt-5 font-semibold text-md">
-            Tabel Confusion Matrix
-          </h1>
-          <h1 class="text-[#5842BE] mt-5 font-semibold text-md">
-            Akurasi :
-            <span>{{ accuracy }}</span>
-            %
-          </h1>
-        </div>
-        <div class="rounded-lg">
-          <table class="w-full mt-2 rounded-full">
-            <thead class="text-[#40444E] bg-gray-100">
-              <tr>
-                <th
-                  scope="col"
-                  class="px-2 py-2 text-sm font-semibold border text-start"
-                ></th>
-                <th
-                  scope="col"
-                  class="px-6 py-2 text-sm font-semibold border text-start"
-                >
-                  Klasifikasi Positif
-                </th>
-                <th
-                  scope="col"
-                  class="px-6 py-2 text-sm font-semibold border text-start"
-                >
-                  Klasifikasi Negatif
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr class="text-[#40444E]">
-                <td class="px-6 py-2 text-sm font-semibold border">
-                  Aktual Positif
-                </td>
-                <td class="px-6 py-2 text-sm font-medium border">
-                  {{ conf_matrix[1][1] }}
-                </td>
-                <td class="px-6 py-2 text-sm font-medium border">
-                  {{ conf_matrix[1][0] }}
-                </td>
-              </tr>
-              <tr class="text-[#40444E]">
-                <td class="px-6 py-2 text-sm font-semibold border">
-                  Aktual Negatif
-                </td>
-                <td class="px-6 py-2 text-sm font-medium border">
-                  {{ conf_matrix[0][1] }}
-                </td>
-                <td class="px-6 py-2 text-sm font-medium border">
-                  {{ conf_matrix[0][0] }}
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
     </div>
 
     <div class="inline-block min-w-full mt-10 align-middle">
@@ -161,15 +83,15 @@
                 </th>
                 <th
                   scope="col"
-                  class="w-12 px-6 py-2 text-base font-semibold text-start"
+                  class="px-6 py-2 text-base font-semibold text-start"
                 >
-                  Klasifikasi Manual
+                  Preprocessing
                 </th>
                 <th
                   scope="col"
                   class="w-12 px-6 py-2 text-base font-semibold text-start"
                 >
-                  Klasifikasi Sistem
+                  Sentimen
                 </th>
               </tr>
             </thead>
@@ -185,11 +107,12 @@
                 <td
                   class="max-w-md px-6 py-3 overflow-hidden text-sm text-[#40444E]"
                 >
-                  <div class="comment-content">{{ row['tweet_clean'] }}</div>
+                  <div class="comment-content">{{ row['komentar'] }}</div>
                 </td>
-                <td class="px-6 py-3 text-sm text-[#40444E]">
-                  {% if row['label'] == 1 %} positif {% else %} negatif {% endif
-                  %}
+                <td
+                  class="max-w-md px-6 py-3 overflow-hidden text-sm text-[#40444E]"
+                >
+                  <div class="comment-content">{{ row['clean_comment'] }}</div>
                 </td>
                 <td class="px-6 py-3 text-sm text-[#40444E]">
                   {% if row['prediction'] == 1 %} positif {% else %} negatif {%
@@ -250,7 +173,7 @@
         "#hs-pie-chart-classification",
         () => ({
           chart: {
-            width: "60%",
+            width: "40%",
             type: "pie",
             zoom: {
               enabled: false,
@@ -258,74 +181,6 @@
           },
           series: [{{ '%.2f' % positive_percentage }}, {{ '%.2f' % negative_percentage }}],
           labels: ["Positif", "Negatif"],
-          title: {
-            show: false,
-          },
-          dataLabels: {
-            style: {
-              fontSize: "14px",
-              fontFamily: "Poppins, ui-sans-serif",
-              fontWeight: "400",
-              colors: ["#fff", "#fff"],
-            },
-            dropShadow: {
-              enabled: false,
-            },
-            formatter: (value) => `${value.toFixed(0)} %`,
-          },
-          plotOptions: {
-            pie: {
-              dataLabels: {
-                offset: -20,
-              },
-            },
-          },
-          legend: {
-            show: false,
-          },
-          stroke: {
-            width: 2,
-          },
-          tooltip: {
-            enabled: true,
-          },
-          states: {
-            hover: {
-              filter: {
-                type: "none",
-              },
-            },
-          },
-        }),
-        {
-          colors: ["#0FAA68", "#FD4D4D"],
-          stroke: {
-            colors: ["rgb(255, 255, 255)"],
-          },
-        },
-        {
-          colors: ["#FD4D4D", "#0FAA68"],
-          stroke: {
-            colors: ["rgb(38, 38, 38)"],
-          },
-        }
-      );
-    })();
-  });
-  window.addEventListener("load", () => {
-    (function () {
-      buildChart(
-        "#hs-pie-chart-model",
-        () => ({
-          chart: {
-            width: "60%",
-            type: "pie",
-            zoom: {
-              enabled: false,
-            },
-          },
-          series: [{{ "%.2f" % percentage_correct }}, {{ "%.2f" % percentage_incorrect }}],
-          labels: ["Sesuai", "Tidak Sesuai"],
           title: {
             show: false,
           },
