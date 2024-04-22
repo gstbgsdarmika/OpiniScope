@@ -18,24 +18,21 @@ OpiniScope adalah sebuah platform teknologi berbasis website yang menggunakan ma
 
 1. Install semua depedensi library yang digunakan (direkomendasikan menggunakan Python versi 3.12)
 2. Membuat Virtual environment dengan perintah:
-
-```shell
-For mac/unix users: python3 -m venv env
-For windows users: py -m venv env
-```
+    ```shell
+    For mac/unix users: python3 -m venv env
+    For windows users: py -m venv env
+    ```
 
 3. Aktifkan lingkungan virtual dengan perintah:
-
-```shell
-For mac/unix users: python3 -m venv env
-For windows users: py -m venv env
-```
+    ```shell
+    For mac/unix users: python3 -m venv env
+    For windows users: py -m venv env
+    ```
 
 4. Jalankan Aplikasi
-
-```shell
-flask run
-```
+    ```shell
+    flask run
+    ```
 
 5. Akses Aplikasi\
    Buka browser web dan arahkan ke alamat yang ditampilkan di terminal setelah menjalankan perintah flask run. Biasanya, alamat ini adalah http://127.0.0.1:5000.
