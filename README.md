@@ -15,24 +15,34 @@ OpiniScope adalah sebuah platform teknologi berbasis website yang menggunakan ma
   Fitur ini memungkinkan pengguna untuk mengunggah banyak komentar atau teks sekaligus dalam format file CSV dengan syarat bahwa file tersebut harus memiliki kolom yang bernama 'komentar'. Dalam kolom 'komentar', pengguna diharapkan mengisikan data komentar yang ingin dianalisis. Setelah pengguna berhasil mengunggah file, sistem akan langsung melakukan proses analisis dan menampilkan hasil analisis sentimen dengan rincian jumlah data yang digunakan, tabel hasil klasifikasi, dan memberikan opsi kepada pengguna untuk mengunduh hasil klasifikasi dalam bentuk file CSV. Pengguna juga dapat melihat hasil analisis sentimen dari teks yang telah dimasukkan, beserta hasil preprocessing-nya.
 
 ## Jalankan aplikasi OpiniScope
-
-1. Install semua depedensi library yang digunakan (direkomendasikan menggunakan Python versi 3.12)
-2. Membuat Virtual environment dengan perintah:
+1. Clone Repositori:\
+   Mulailah dengan mengcloning repositori Flask dari GitHub. Buka terminal atau command prompt, lalu jalankan perintah berikut:
+    ```shell
+    git clone https://github.com/gstbgsdarmika/OpiniScope.git
+    ```
+2. Pindah ke Direktori Repositori\
+   Setelah repositori telah berhasil dicloning, pindah ke direktori repositori menggunakan perintah cd:
+   ```shell
+    cd OpiniScope
+    ```
+3. Membuat Virtual environment dengan perintah:
     ```shell
     For mac/unix users: python3 -m venv env
     For windows users: py -m venv env
     ```
-
-3. Aktifkan lingkungan virtual dengan perintah:
+4. Aktifkan lingkungan virtual dengan perintah:
     ```shell
     For mac/unix users: python3 -m venv env
     For windows users: py -m venv env
     ```
-
-4. Jalankan Aplikasi
+5. Selanjutnya, Install Modul Node.js dengan menjalankan perintah:
+     ```shell
+    npm install
+    ```
+6. Install semua depedensi library yang digunakan (direkomendasikan menggunakan Python versi 3.12)
+7. Jalankan Aplikasi
     ```shell
     flask run
     ```
-
-5. Akses Aplikasi\
+8. Akses Aplikasi\
    Buka browser web dan arahkan ke alamat yang ditampilkan di terminal setelah menjalankan perintah flask run. Biasanya, alamat ini adalah http://127.0.0.1:5000.
