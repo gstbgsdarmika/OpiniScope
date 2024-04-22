@@ -1,10 +1,8 @@
-import os
 import csv
 import pickle
 import numpy as np
 import pandas as pd
-from sklearn.metrics import accuracy_score
-from sklearn.metrics import confusion_matrix
+from sklearn.metrics import accuracy_score, confusion_matrix
 from models.machine.preprocessing.preprocessing import TextPreprocessor
 from flask import Flask, request, jsonify, render_template, flash, send_file, redirect, session, url_for, send_from_directory
 
